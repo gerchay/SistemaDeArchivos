@@ -15,8 +15,6 @@ char *com6=NULL;
 char *com7=NULL;
 char *com8=NULL;
 
-int fdflags;
-
 int verificarCadena(char* cad) 
 {
 	printf("v = %s\n", cad);
@@ -79,10 +77,10 @@ void verificarComando(char *com, char *atributos)
 {
 	limpiarVariables();
 
-     char* inst=NULL;
-     int cont=1;
+    char* inst=NULL;
+    int cont=1;
 
-    if(strcasecmp(com,"mkdisk")==0 ||  strcasecmp(com,"Mkdisk")==0 || strcasecmp(com,"MKDISK")==0 || strcasecmp(com,"MKdisk")==0) 
+    if(strcasecmp(com,"mkdisk")==0 ) // ya
 	{
     	char aux[100];
     	strcpy(aux, atributos);
@@ -115,9 +113,9 @@ void verificarComando(char *com, char *atributos)
 			else if(i==3){ atributoDisco(com3); }
 			else if(i==4){ atributoDisco(com4); }
     	}
-        crearDisco();
+        crearDisco(1);
     }
-	else  if(strcasecmp(com,"rmdisk")==0 || strcasecmp(com,"Rmdisk")==0 || strcasecmp(com,"RMdisk")==0 || strcasecmp(com,"RMDISK")==0 )
+	else  if(strcasecmp(com,"rmdisk")==0 ) // ya
 	{
 		char aux[100];
     	strcpy(aux, atributos);
@@ -137,7 +135,7 @@ void verificarComando(char *com, char *atributos)
     	for(i=1;i<cont-1;i++) { if(i==1){ atributoDisco(com1); } }
     	eliminarDisco();
     } 
-	else  if(strcasecmp(com,"fdisk")==0 || strcasecmp(com,"Fdisk")==0 || strcasecmp(com,"FDISK")==0 || strcasecmp(com,"FDisk")==0 )
+	else  if(strcasecmp(com,"fdisk")==0 ) // ya
 	{
 		char aux[100];
         strcpy(aux, atributos);
@@ -188,7 +186,7 @@ void verificarComando(char *com, char *atributos)
         }
         adminParticion();
     } 
-	else  if(strcasecmp(com,"mount")==0 ||strcasecmp(com,"MOUNT")==0  || strcasecmp(com,"Mount")==0 )
+	else  if(strcasecmp(com,"mount")==0 ) // ya
 	{
 		char aux[100];
     	strcpy(aux, atributos);
@@ -214,9 +212,9 @@ void verificarComando(char *com, char *atributos)
 			else if(i==2){ atributoDisco(com2); }
     	}
 		montarP();
-		//metodoPrueba();
+		mostrarMontadas();
     } 
-	else  if(strcasecmp(com,"umount")==0 ||strcasecmp(com,"UMOUNT")==0 ||strcasecmp(com,"UNmount")==0  )
+	else  if(strcasecmp(com,"umount")==0 ) // ya
 	{
 		char aux[100];
         strcpy(aux, atributos);
@@ -266,7 +264,7 @@ void verificarComando(char *com, char *atributos)
 			else if(i==8){ atributoDisco(com8); desmontar(com8); }
         }
     } 
-	else  if(strcasecmp(com,"REP")==0 ||strcasecmp(com,"rep")==0 || strcasecmp(com,"Rep")==0)
+	else  if(strcasecmp(com,"REP")==0 ) // ya
 	{
 		char aux[100];
         strcpy(aux, atributos);
@@ -302,7 +300,7 @@ void verificarComando(char *com, char *atributos)
         generarReporte();
 
     }
-	else  if(strcasecmp(com,"exec")==0 ||strcasecmp(com,"EXEC")==0 || strcasecmp(com,"Exec")==0)
+	else  if(strcasecmp(com,"exec")==0 ) // ya
 	{
 		char aux[100];
         strcpy(aux, atributos);
@@ -323,7 +321,7 @@ void verificarComando(char *com, char *atributos)
         script();
 
     }
-	else if (strcasecmp(com, "mkfs") == 0 || strcasecmp(com, "MKFS") == 0 || strcasecmp(com, "Mkfs") == 0) 
+	else if (strcasecmp(com, "mkfs") == 0 )  // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -367,7 +365,7 @@ void verificarComando(char *com, char *atributos)
 		}
 		formatear();
 	}
-	else if (strcasecmp(com, "login") == 0 || strcasecmp(com, "LOGIN") == 0 || strcasecmp(com, "Login") == 0) 
+	else if (strcasecmp(com, "login") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -402,11 +400,11 @@ void verificarComando(char *com, char *atributos)
 		login();
 
 	} 
-	else if (strcasecmp(com, "logout") == 0 || strcasecmp(com, "LOGOUT") == 0 || strcasecmp(com, "Logout") == 0) 
+	else if (strcasecmp(com, "logout") == 0 ) // ya
 	{
 		logout();
 	}
-	else if (strcasecmp(com, "mkgrp") == 0 || strcasecmp(com, "MKGRP") == 0 || strcasecmp(com, "Mkgrp") == 0) 
+	else if (strcasecmp(com, "mkgrp") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -437,7 +435,7 @@ void verificarComando(char *com, char *atributos)
 		crearGrupo();
 
 	} 
-	else if (strcasecmp(com, "rmgrp") == 0 || strcasecmp(com, "RMGRP") == 0 || strcasecmp(com, "Rmgrp") == 0) 
+	else if (strcasecmp(com, "rmgrp") == 0 )  // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -467,7 +465,7 @@ void verificarComando(char *com, char *atributos)
 		eliminarGrupo();
 
 	} 
-	else if (strcasecmp(com, "mkusr") == 0 || strcasecmp(com, "MKUSR") == 0 || strcasecmp(com, "mkusr") == 0) 
+	else if (strcasecmp(com, "mkusr") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -508,7 +506,7 @@ void verificarComando(char *com, char *atributos)
 		crearUsuario();
 
 	} 
-	else if (strcasecmp(com, "rmusr") == 0 || strcasecmp(com, "RMUSR") == 0 || strcasecmp(com, "Rmusr") == 0) 
+	else if (strcasecmp(com, "rmusr") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -539,7 +537,7 @@ void verificarComando(char *com, char *atributos)
 		eliminarUsuario();
 
 	} 
-	else if (strcasecmp(com, "chmod") == 0 || strcasecmp(com, "CHMOD") == 0 || strcasecmp(com, "Chmod") == 0) 
+	else if (strcasecmp(com, "chmod") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -577,10 +575,10 @@ void verificarComando(char *com, char *atributos)
 			}
 		}
 		
-		permiso();
+		permisoMetodo();
 
 	} 
-	else if (strcasecmp(com, "mkfile") == 0 || strcasecmp(com, "MKFILE") == 0 || strcasecmp(com, "Mkfile") == 0) 
+	else if (strcasecmp(com, "mkfile") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -626,7 +624,7 @@ void verificarComando(char *com, char *atributos)
 		crearArchivo();
 
 	} 
-	else if (strcasecmp(com, "cat") == 0 || strcasecmp(com, "CAT") == 0 || strcasecmp(com, "Cat") == 0) 
+	else if (strcasecmp(com, "cat") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -672,7 +670,7 @@ void verificarComando(char *com, char *atributos)
 		mostrarContenido();
 
 	} 
-	else if (strcasecmp(com, "rem") == 0 || strcasecmp(com, "REM") == 0 || strcasecmp(com, "Rem") == 0) 
+	else if (strcasecmp(com, "rem") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -708,7 +706,7 @@ void verificarComando(char *com, char *atributos)
 		remover();
 
 	} 
-	else if (strcasecmp(com, "edit") == 0 || strcasecmp(com, "EDIT") == 0 || strcasecmp(com, "Edit") == 0) 
+	else if (strcasecmp(com, "edit") == 0 )  // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -754,7 +752,7 @@ void verificarComando(char *com, char *atributos)
 		editar();
 
 	} 
-	else if (strcasecmp(com, "ren") == 0 || strcasecmp(com, "REN") == 0 || strcasecmp(com, "Ren") == 0) 
+	else if (strcasecmp(com, "ren") == 0 )   // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -789,7 +787,7 @@ void verificarComando(char *com, char *atributos)
 		
 		renombrar();
 	} 
-	else if (strcasecmp(com, "mkdir") == 0 || strcasecmp(com, "MKDIR") == 0 || strcasecmp(com, "Mkdir") == 0) 
+	else if (strcasecmp(com, "mkdir") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -825,7 +823,7 @@ void verificarComando(char *com, char *atributos)
 		crearDirectorio();
 
 	} 
-	else if (strcasecmp(com, "cp") == 0 || strcasecmp(com, "CEP") == 0 || strcasecmp(com, "Cp") == 0) 
+	else if (strcasecmp(com, "cp") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -866,7 +864,7 @@ void verificarComando(char *com, char *atributos)
 		copiar();
 
 	} 
-	else if (strcasecmp(com, "mv") == 0 || strcasecmp(com, "MV") == 0 || strcasecmp(com, "Mv") == 0) 
+	else if (strcasecmp(com, "mv") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -907,7 +905,7 @@ void verificarComando(char *com, char *atributos)
 		mover();
 
 	} 
-	else if (strcasecmp(com, "find") == 0 || strcasecmp(com, "FIND") == 0 || strcasecmp(com, "Find") == 0) 
+	else if (strcasecmp(com, "find") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -953,7 +951,7 @@ void verificarComando(char *com, char *atributos)
 		encontrar();
 
 	} 
-	else if (strcasecmp(com, "chown") == 0 || strcasecmp(com, "CHOWN") == 0 || strcasecmp(com, "Chown") == 0) // NO ESTA HECHO
+	else if (strcasecmp(com, "chown") == 0 )
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -990,10 +988,10 @@ void verificarComando(char *com, char *atributos)
 				atributoDisco(com4);
 			}
 		}
-		imprimirDatos();
+		//imprimirDatos();
 
 	} 
-	else if (strcasecmp(com, "chgrp") == 0 || strcasecmp(com, "CHGRP") == 0 || strcasecmp(com, "Chgrp") == 0) // NO ESTA HECHO
+	else if (strcasecmp(com, "chgrp") == 0 ) 
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -1020,15 +1018,35 @@ void verificarComando(char *com, char *atributos)
 				atributoDisco(com2);
 			}
 		}
-		imprimirDatos();
+		//imprimirDatos();
 
 	} 
-	else if(strcasecmp(com,"pause")==0 ||strcasecmp(com,"PAUSE")==0 ||strcasecmp(com,"Pause")==0)
+	else if(strcasecmp(com,"pause")==0 ) // ya
 	{
 		printf("Presione cualquier tecla para continuar");
 		getchar();
 	}
-	else if (strcasecmp(com, "loss") == 0 || strcasecmp(com, "LOSS") == 0 || strcasecmp(com, "Loss") == 0) // NO ESTA HECHO
+	else if (strcasecmp(com, "recovery") == 0) // ya
+	{
+		char aux[100];
+		strcpy(aux, atributos);
+		inst = strtok(atributos, " ");
+		while (inst != NULL) 
+		{
+			inst = strtok(NULL, " ");
+			switch (cont) 
+			{
+				case 1:
+					com1 = inst;
+					break;
+			}
+			cont++;
+		}
+		int i;
+		for (i = 1; i < cont - 1; i++) { if (i == 1) { atributoDisco(com1); } }
+		recovery();
+	} 
+	else if (strcasecmp(com, "loss") == 0 ) // ya
 	{
 		char aux[100];
 		strcpy(aux, atributos);
@@ -1048,6 +1066,6 @@ void verificarComando(char *com, char *atributos)
 				atributoDisco(com1);
 			}
 		}
-		imprimirDatos();
+		loss();
 	}
 }
